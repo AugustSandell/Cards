@@ -13,9 +13,12 @@ class Card:
 class Deck:
     def __init__(self):
         self.cards = []
+        self.usedcards = []
         self.build()
+        self.shuffle()
 
     def build(self):
+        print ("build card deck")
         for s in ["Spades", "Clubs", "Diamonds", "Hearts"]:
             for v in range(1, 14):
                 self.cards.append(Card(s, v))
@@ -31,24 +34,12 @@ class Deck:
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
     def drawCard(self):
-        return self.cards.pop()
+        card1 = self.cards.pop()
 
+        i = 0
+        if len(self.cards)>0:
+            for card3 in self.cards:
+                i += 1
+                print ("i="+str(i) + str(card3.suit) + str(card3.value))
 
-
-
-
-#deck.show()
-#card = deck.drawCard()
-#deck.show()
-#class Player:
-    #def __init__(self, name):
-        #self.name = name
-        #self.hand = []
-
-    #def draw(self, deck):
-        #self.hand.append(deck.drawCard())
-        #return self
-
-    #def showHand(self):
-        #for card in self.hand:
-            #card.show()
+        return card1
